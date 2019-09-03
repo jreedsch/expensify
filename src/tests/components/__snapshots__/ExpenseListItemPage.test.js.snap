@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ExpenseListItemPage with test expense 1`] = `
+<div>
+  <p>
+    <Link
+      replace={false}
+      to="/edit/1"
+    >
+      bread
+    </Link>
+  </p>
+  <p>
+    amount: 
+    395
+    , createdAt: 
+    Dec 31st 1969
+  </p>
+</div>
+`;

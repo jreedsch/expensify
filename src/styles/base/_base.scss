@@ -1,0 +1,33 @@
+
+
+html {
+  font-size: 62.5%; //makes 1rem = 10px
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  color: $brand-color;
+  font-size: $std-size;
+  background: $dark-blue;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+h1 {
+  font-size: $lrg-size;
+}
+
+.is-active {
+  font-weight: bold;
+  color: red;
+}
+.link {
+  color: white;
+    font-weight: normal;
+}
