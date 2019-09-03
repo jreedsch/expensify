@@ -13,7 +13,7 @@ import { setTextFilter, sortByAmount, sortByDate, setStartDate, setEndDate } fro
 import { addExpense, removeExpense, editExpense } from './actions/expenses';
 
 const myStore = configureStore();
-console.log('IN app.js, store: '+JSON.stringify(myStore.getState()));
+//console.log('IN app.js, store: '+JSON.stringify(myStore.getState()));
 
 //https://codechi.com/dev-tools/date-to-millisecond-calculators/
 const expenseOne = myStore.dispatch(addExpense({description: 'Rent', amount: 100, createdAt: 1564725600000})); //Fri Aug 02 2019 00:00:00 GMT-0600
