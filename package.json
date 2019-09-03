@@ -9,6 +9,8 @@
     "live-server": "live-server public/",
     "babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
     "webpack-build": "webpack --watch",
+    "build:dev": "webpack --env development",
+    "build:prod": "webpack -p --env production",
     "devserver": "webpack-dev-server",
     "test": "jest --config=jest.config.json"
   },
@@ -24,6 +26,7 @@
     "enzyme": "3.0.0",
     "enzyme-adapter-react-16": "1.0.0",
     "enzyme-to-json": "3.0.1",
+    "extract-text-webpack-plugin": "3.0.0",
     "jest": "20.0.4",
     "live-server": "^1.2.1",
     "moment": "2.18.1",
