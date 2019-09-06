@@ -13,7 +13,7 @@ module.exports = (env) => {
  return  {
   entry: './src/app.js',
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'public', 'dist'),
     filename: 'bundle.js'
   },
   module: {
@@ -54,7 +54,8 @@ module.exports = (env) => {
     watchOptions: {
       poll: true
     },
-    historyApiFallback: true //client-side routing, 404 returns index.html, for react-router
+    historyApiFallback: true, //client-side routing, 404 returns index.html, for react-router
+    publicPath: '/dist/'
   }
  }
 };
