@@ -6,7 +6,7 @@ const getVisibleExpensesX = (expenses, filters) => {
   console.log("IN getVisibleExpenses, filters: "+filters);
 }
 
-const getVisibleExpenses = (expenses, {text, sortBy, startDate, endDate}) => {
+export const getVisibleExpenses = (expenses, {text, sortBy, startDate, endDate}) => {
   return expenses.filter((expense) => {
       //console.log("expense: "+JSON.stringify(expense));
       //console.log("startDate: "+startDate);
@@ -38,4 +38,19 @@ const getVisibleExpenses = (expenses, {text, sortBy, startDate, endDate}) => {
   })
 }
 
-export default getVisibleExpenses;
+//export default getVisibleExpenses;
+
+// sum up all expense amounts
+export const getExpenseTotal = (expenses) => {
+
+  //const expenseAmount = expenses.map((expense) => {
+  //  return expense.amount;
+  //})
+  //return expenseAmount.reduce((acc, val) => {
+  //  return acc + val;
+  //}, 0);
+
+  return expenses
+         .map((expense) => expense.amount)
+         .reduce((sum,value) => sum + value, 0);
+}

@@ -1,5 +1,5 @@
 import expensesReducer from '../../reducers/expenses';
-import expenses from '../fixtures/expenses';  //test data
+import { expensesCase1 } from '../fixtures/expenses';  //test data
 
 test('should setup default expenses state', () => {
   const state = expensesReducer(undefined, {type: '@@INIT'});
@@ -20,17 +20,17 @@ test('should add new expense', () => {
     type: 'ADD_EXPENSE',
     expense: newExpense
   };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual([...expenses, newExpense]);
+  const state = expensesReducer(expensesCase1, action);
+  expect(state).toEqual([...expensesCase1, newExpense]);
 });
 
 test('should remove expense by id', () => {
   const action = {
     type: 'REMOVE_EXPENSE',
-    id: expenses[1].id
+    id: expensesCase1[1].id
   };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual([expenses[0], expenses[2]]);
+  const state = expensesReducer(expensesCase1, action);
+  expect(state).toEqual([expensesCase1[0], expensesCase1[2]]);
 });
 
 test('should not remove expense if id does not exist', () => {
@@ -38,8 +38,8 @@ test('should not remove expense if id does not exist', () => {
     type: 'REMOVE_EXPENSE',
     id: -1
   };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual(expenses);
+  const state = expensesReducer(expensesCase1, action);
+  expect(state).toEqual(expensesCase1);
 });
 
 
@@ -48,10 +48,10 @@ test('should edit expense by id', () => {
   const updates = {description: newDescription};
   const action = {
     type: 'EDIT_EXPENSE',
-    id: expenses[0].id,
+    id: expensesCase1[0].id,
     updates: updates
   };
-  const state = expensesReducer(expenses, action);
+  const state = expensesReducer(expensesCase1, action);
   expect(state[0].description).toBe(newDescription);
 });
 
@@ -63,6 +63,6 @@ test('should not edit expense if wrong id', () => {
     id: -1,
     updates: updates
   };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual(expenses); //original data is unchanged
+  const state = expensesReducer(expensesCase1, action);
+  expect(state).toEqual(expensesCase1); //original data is unchanged
 });

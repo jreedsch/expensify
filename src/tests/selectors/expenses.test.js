@@ -1,6 +1,6 @@
-import selectExpenses from '../../selectors/expenses';
+import { getVisibleExpenses, getExpenseTotal } from '../../selectors/expenses';
 import moment from 'moment';
-import expenses from '../fixtures/expenses';  //test data
+import { expensesCase1, expensesCase2, expensesCase3 } from '../fixtures/expenses';  //test data
 
 
 test('should filter expenses on description by text value in date order', () => {
@@ -11,8 +11,8 @@ test('should filter expenses on description by text value in date order', () => 
     endDate: undefined
   };
 
-  const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[2], expenses[1]]); //in date order
+  const result = getVisibleExpenses(expensesCase1 , filters);
+  expect(result).toEqual([expensesCase1 [2], expensesCase1 [1]]); //in date order
 });
 
 test('should filter expenses on start date', () => {
@@ -23,8 +23,8 @@ test('should filter expenses on start date', () => {
     endDate: undefined
   };
 
-  const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[2]]); //in date order
+  const result = getVisibleExpenses(expensesCase1, filters);
+  expect(result).toEqual([expensesCase1[2]]); //in date order
 });
 
 test('should filter expenses on end date', () => {
@@ -35,8 +35,8 @@ test('should filter expenses on end date', () => {
     endDate: moment(0).add(1, 'days'),
   };
 
-  const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[0],expenses[1]]); //in date order
+  const result = getVisibleExpenses(expensesCase1, filters);
+  expect(result).toEqual([expensesCase1[0],expensesCase1[1]]); //in date order
 });
 
 test('should sort expenses array by date', () => {
@@ -47,8 +47,8 @@ test('should sort expenses array by date', () => {
     endDate: undefined
   };
 
-  const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[2],expenses[0],expenses[1]]); //in date order
+  const result = getVisibleExpenses(expensesCase1, filters);
+  expect(result).toEqual([expensesCase1[2],expensesCase1[0],expensesCase1[1]]); //in date order
 });
 
 
@@ -60,6 +60,22 @@ test('should sort expenses array by amount', () => {
     endDate: undefined
   };
 
-  const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[0],expenses[1],expenses[2]]); //in date order
+  const result = getVisibleExpenses(expensesCase1, filters);
+  expect(result).toEqual([expensesCase1[0],expensesCase1[1],expensesCase1[2]]); //in date order
+});
+
+
+test('should total all expenses', () => {
+  const result = getExpenseTotal(expensesCase1);
+  expect(result).toEqual(expensesCase1[2].amount + expensesCase1[1].amount + expensesCase1[0].amount );
+});
+
+test('should total expenses when none exist', () => {
+  const result = getExpenseTotal(expensesCase2);
+  expect(result).toBe(0);
+});
+
+test('should total expenses when only one exists', () => {
+  const result = getExpenseTotal(expensesCase3);
+  expect(result).toBe(expensesCase3[0].amount);
 });

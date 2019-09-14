@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { EditExpensePage } from '../../components/EditExpensePage'; //use named export for unconnected component
-import expenses from '../fixtures/expenses';
+import { expensesCase1 } from '../fixtures/expenses';
 
 let editExpense, removeExpense, history, wrapper, expenseData;
 
@@ -9,7 +9,7 @@ beforeEach(() => {
   editExpense = jest.fn();
   removeExpense = jest.fn();
   history = { push: jest.fn() };
-  expenseData = expenses[1];
+  expenseData = expensesCase1[1];
   wrapper = shallow(<EditExpensePage
               editExpense={editExpense}
               removeExpense={removeExpense}

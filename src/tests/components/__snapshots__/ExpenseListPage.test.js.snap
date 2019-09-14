@@ -5,6 +5,13 @@ exports[`should render ExpenseListPage with no expenses 1`] = `
   <h3>
     expense list page for filter: 
   </h3>
+  <h3>
+    count: 
+    0
+       amount: 
+    0
+     
+  </h3>
   <p>
     No expenses
   </p>
@@ -16,12 +23,19 @@ exports[`should render ExpenseListPage with test expenses 1`] = `
   <h3>
     expense list page for filter: 
   </h3>
+  <h3>
+    count: 
+    3
+       amount: 
+    600
+     
+  </h3>
   <p>
     expenses count: 
     3
   </p>
   <ExpenseListItemPage
-    amount={395}
+    amount={300}
     createdAt={0}
     description="bread"
     id={1}
@@ -29,7 +43,7 @@ exports[`should render ExpenseListPage with test expenses 1`] = `
     note=""
   />
   <ExpenseListItemPage
-    amount={250}
+    amount={200}
     createdAt={-345600000}
     description="milk"
     id={2}
@@ -37,7 +51,7 @@ exports[`should render ExpenseListPage with test expenses 1`] = `
     note=""
   />
   <ExpenseListItemPage
-    amount={110}
+    amount={100}
     createdAt={345600000}
     description="spinach"
     id={3}

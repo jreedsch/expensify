@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { AddExpensePage } from '../../components/AddExpensePage'; //use named export for unconnected component
-import expenses from '../fixtures/expenses';
+import { expensesCase1 } from '../fixtures/expenses';
 
-let addExpense, history, wrapper;
+let startAddExpense, history, wrapper;
 beforeEach(() => {
-  addExpense = jest.fn(); //spy
+  startAddExpense = jest.fn(); // addExpense //spy
   history = { push: jest.fn() }; //spy
-  wrapper = shallow(<AddExpensePage addExpense={addExpense} history={history} />);
+  wrapper = shallow(<AddExpensePage startAddExpense={startAddExpense} history={history} />);
 });
 
 test('should render add expense page correctly', () => {
@@ -19,12 +19,11 @@ test('should render add expense page correctly', () => {
 
 test('should handle submit of add expense data', () => {
   //const onSubmit = jest.fn();
-  //const history = { push: jest.fn() };
-  const expenseData = expenses[1];
+  const expenseData = expensesCase1[1];
   //const wrapper = shallow(<AddExpensePage onSubmit={onSubmit} history={history} />);
   wrapper.find('ExpenseForm').prop('onSubmit')(expenseData);
   expect(history.push).toHaveBeenLastCalledWith('/');
-  expect(addExpense).toHaveBeenLastCalledWith(expenseData);
+  expect(startAddExpense).toHaveBeenLastCalledWith(expenseData);
 });
 
 /*
