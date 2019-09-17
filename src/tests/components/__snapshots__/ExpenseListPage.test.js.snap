@@ -38,7 +38,7 @@ exports[`should render ExpenseListPage with test expenses 1`] = `
     amount={300}
     createdAt={0}
     description="bread"
-    id={1}
+    id="1"
     key="1"
     note=""
   />
@@ -46,7 +46,7 @@ exports[`should render ExpenseListPage with test expenses 1`] = `
     amount={200}
     createdAt={-345600000}
     description="milk"
-    id={2}
+    id="2"
     key="2"
     note=""
   />
@@ -54,7 +54,7 @@ exports[`should render ExpenseListPage with test expenses 1`] = `
     amount={100}
     createdAt={345600000}
     description="spinach"
-    id={3}
+    id="3"
     key="3"
     note=""
   />

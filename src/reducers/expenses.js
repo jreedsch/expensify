@@ -9,11 +9,24 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
       console.log("IN expenses reducer, add expense: ");
       console.log({...action.expense});
       return [ ...state, action.expense ] //state.concat(action.expense);
+
+    case 'SET_EXPENSES': //wipe state expenses
+      console.log("IN expenses reducer SET_EXPENSES, expenses: ");
+      console.log({...action.expenses});
+      return action.expenses;  //[ ...state, ...action.expenses ]
+      //return state;
+
+    case 'LOAD_EXPENSES': //wipe state expenses
+      console.log("IN expenses reducer LOAD_EXPENSES, expenses: ");
+      console.log({...action.expenses});
+      return action.expenses;  //[ ...state, ...action.expenses ]
+
     case 'REMOVE_EXPENSE':
-      //console.log("Id b: "+action.expense.id);
+      console.log("IN expenses reducer REMOVE_EXPENSE, id: "+action.id);
       //return state.filter((expense) => { return expense.id !== action.expense.id});
       //return state.filter(( {id} ) => { return id !== action.id});
       return state.filter(( {id} ) => id !== action.id );
+
     case 'EDIT_EXPENSE':
       return state.map((expense) => {
           if (expense.id === action.id) {

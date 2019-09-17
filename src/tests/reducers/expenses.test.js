@@ -8,6 +8,24 @@ test('should setup default expenses state', () => {
   );
 });
 
+test('should set expenses', () => {
+  const action = {
+    type: 'SET_EXPENSES',
+    expenses: expensesCase1
+  };
+  const state = expensesReducer(undefined, action);
+  expect(state).toEqual([...expensesCase1]);
+});
+
+test('should set one expense and remove any others', () => {
+  const action = {
+    type: 'SET_EXPENSES',
+    expenses: [expensesCase1[0]]
+  };
+  const state = expensesReducer(expensesCase1, action);
+  expect(state).toEqual([expensesCase1[0]]);
+});
+
 test('should add new expense', () => {
   const newExpense = {
     id: 4,

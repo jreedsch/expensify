@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import { editExpense, removeExpense } from '../actions/expenses';
+import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
 export class EditExpensePage extends React.Component {
 
@@ -35,8 +35,8 @@ export class EditExpensePage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch, props) => ({
-  removeExpense: (data) => dispatch(removeExpense(data)),
-  editExpense: (id, expense) => dispatch(editExpense(id, expense))
+  removeExpense: (data) => dispatch(startRemoveExpense(data)), //dispatch(removeExpense(data)),
+  editExpense: (id, expense) => dispatch(startEditExpense(id, expense))
 });
   //removeExpense: (id) => dispatch(removeExpense({ id })) }
 
@@ -69,7 +69,17 @@ const EditExpensePage = (props) => {
 
 */
 
-const mapStateToProps = (state, props) => ( { expense: state.expenses.find((expense) =>  expense.id === props.match.params.id) } );
+//$$$ const mapStateToProps = (state, props) => ( { expense: state.expenses.find((expense) =>  expense.id === props.match.params.id) } );
+const mapStateToProps = (state, props) => {
+  const editExpense = state.expenses.find((expense) =>  expense.id === props.match.params.id);
+  console.log("IN EditExpensePage.mapStateToProps, state: "+JSON.stringify(state));
+  console.log("IN EditExpensePage.mapStateToProps, props: "+JSON.stringify(props));
+  console.log("IN EditExpensePage.mapStateToProps, editExpense: "+JSON.stringify(editExpense));
+  return { expense:  editExpense };
+};
+
+
+
 /*
 const mapStateToProps = (state, props) => {
   return {

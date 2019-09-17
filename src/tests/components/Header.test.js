@@ -2,7 +2,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 //import toJSON from 'enzyme-to-json'; // see jest.config.json
-import Header from '../../components/Header';
+import { Header } from '../../components/Header';
 
 // in Jest, 'u' to save new baseline snapshot
 test('should render Header correctly', () => {
@@ -17,4 +17,11 @@ test('should render Header correctly', () => {
   //renderer.render(<Header />);
   //console.log(renderer.getRenderOutput());
   //expect(renderer.getRenderOutput()).toMatchSnapshot();
-})
+});
+
+test('should call startLogout on button click', () => {
+  const startLogout = jest.fn();  //spy
+  const wrapper = shallow(<Header startLogout={startLogout} />);
+  wrapper.find('button').simulate('click');
+  expest(startLogout).toHaveBeenCalled();
+});

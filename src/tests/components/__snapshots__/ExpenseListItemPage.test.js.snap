@@ -11,7 +11,9 @@ exports[`should render ExpenseListItemPage with test expense 1`] = `
     </Link>
   </p>
   <p>
-    Amount: 
+    ID: 
+    1
+    , Amount: 
     $3.00
     , Created date: 
     Dec 31st 1969

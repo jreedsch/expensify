@@ -21,6 +21,7 @@ const ExpenseListItemPage = ({description, amount, createdAt, id}) => { //destru
     <div>
       <p><Link to={`/edit/${id}`}>{description}</Link></p>
       <p>
+         ID: {id},
          Amount: {moneyAmount},
          Created date: {createdAtMoment}
       </p>

@@ -3,10 +3,31 @@ import configureMockStore from 'redux-mock-store';
 import database from '../../firebase/firebase';
 import thunk from 'redux-thunk';
 //import { addExpense, editExpense, removeExpense } from '../../actions/expenses';
-import { addExpense, startAddExpense, editExpense, removeExpense } from '../../actions/expenses';
+import { setExpenses, startSetExpenses, addExpense, startAddExpense, editExpense, removeExpense } from '../../actions/expenses';
 import { expensesCase1 } from '../fixtures/expenses';
 
 const createMockStore = configureMockStore([thunk]);
+
+beforeEach((done) => {
+  console.log("start beforeEach");
+  const expensesData = {};
+  expensesCase1.forEach(({id, note, description, amount, createdAt}) => {
+    expensesData[id] = {note, description, amount, createdAt};
+  })
+  database.ref('expenses').set(expensesData).then(() => {
+    console.log("end beforeEach");
+    done();
+  });
+})
+
+test('create the set expense action object', () => {
+  const expenses = expensesCase1;
+  const action = setExpenses(expenses);
+  expect(action).toEqual({  //compare objects or arrays
+    type: 'SET_EXPENSES',
+    expenses
+  });
+});
 
 test('create the remove expense action object', () => {
   const action = removeExpense({ id: 'abc123'});
@@ -77,11 +98,24 @@ test('add expense to database and store', (done) => {
   })
   .then((snapshot) => {
     console.log("ADD EXPENSE: CHECK DB SNAPSHOT: "+JSON.stringify(snapshot.val()));
-    expect(snapshot.val().toEqual(expenseData));
+    expect(snapshot.val()).toEqual(expenseData);
     done();
   });
-
 });
+
+
+test('should fetch database data', (done) => {
+  const store = createMockStore({});
+  store.dispatch(startSetExpenses())
+  .then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'SET_EXPENSES',
+      expenses: expensesCase1 
+    });
+  })
+});
+
 /*
 test('2 add expense to database and store', (done) => {
   const store = createMockStore({});

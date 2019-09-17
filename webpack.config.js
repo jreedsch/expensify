@@ -8,7 +8,7 @@ console.log("WEBPACK PATH: "+path.join(__dirname, 'public')); //path for output
 // dotenv lib
 process.env.NODE_ENV  = process.env.NODE_ENV || 'development'; //set by cross-env in test, or heroku in prod
 
-console.log("wprocess.env.NODE_ENV: "+process.env.NODE_ENV);
+console.log("process.env.NODE_ENV: "+process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === 'test') {
   require('dotenv').config({ path: '.env.test'});
