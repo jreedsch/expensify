@@ -36,7 +36,7 @@ const AppRouter = () => (
        component={ AddExpensePage }
     />
     <PrivateRoute path="/edit/:id" component={ EditExpensePage } />
-    <PublicRoute
+    <PrivateRoute
        path="/help"
        component={ HelpPage }
     />

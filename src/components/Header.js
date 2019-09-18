@@ -3,7 +3,7 @@ import { NavLink }  from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 
-const Header = ({ startLogout }) => ( //implicit return
+export const Header = ({ startLogout }) => ( //implicit return
   <header>
     <h1>Expensify</h1>
     <div><NavLink to='/dashboard' activeClassName='is-active' exact={true}>Dashboard</NavLink></div>

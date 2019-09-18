@@ -3,10 +3,12 @@ import { shallow } from 'enzyme';
 import React from 'react';
 //import toJSON from 'enzyme-to-json'; // see jest.config.json
 import { Header } from '../../components/Header';
+//import { startLogout } from '../../actions/auth';
 
 // in Jest, 'u' to save new baseline snapshot
 test('should render Header correctly', () => {
-  const wrapper = shallow(<Header />);
+  const startLogoutMock = jest.fn();
+  const wrapper = shallow(<Header startLogout={startLogoutMock}/>);
   //expect(toJSON(wrapper)).toMatchSnapshot();
   expect(wrapper).toMatchSnapshot();
   //expect(wrapper.find('h1').length).toBe(1); //count of h1 elements
@@ -20,8 +22,8 @@ test('should render Header correctly', () => {
 });
 
 test('should call startLogout on button click', () => {
-  const startLogout = jest.fn();  //spy
-  const wrapper = shallow(<Header startLogout={startLogout} />);
+  const startLogoutMock = jest.fn();  //spy
+  const wrapper = shallow(<Header startLogout={startLogoutMock} />);
   wrapper.find('button').simulate('click');
-  expest(startLogout).toHaveBeenCalled();
+  expect(startLogoutMock).toHaveBeenCalled();
 });

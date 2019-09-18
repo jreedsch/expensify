@@ -34,10 +34,11 @@ test('create the set expense action object', () => {
 });
 
 test('create the remove expense action object', () => {
-  const action = removeExpense({ id: 'abc123'});
+  const idObject = { id: 'abc123'};
+  const action = removeExpense(idObject);
   expect(action).toEqual({  //compare objects or arrays
     type: 'REMOVE_EXPENSE',
-    id: 'abc123'
+    id: idObject
   });
 })
 
@@ -82,11 +83,10 @@ test('add expense to database and store', (done) => {
     const actions = store.getActions();  //get store actions (redux-mock-store)
     console.log("ADD EXPENSE: CREATE ACTION: "+JSON.stringify(actions[0]));
 
-    //$$$ why does this terminate with the 'expect' ???
-    //expect(actions[0].toEqual({
-    //    type: 'ADD_EXPENSE',
-    //    expense: { id: expect.any(String), ...expenseData }
-    //}));
+    expect(actions[0]).toEqual({
+        type: 'ADD_EXPENSE',
+        expense: { id: expect.any(String), ...expenseData }
+    });
     console.log("ADD EXPENSE: ACTION WAS CREATED");
 
     // is it in the DB?
@@ -99,6 +99,7 @@ test('add expense to database and store', (done) => {
     console.log("ADD EXPENSE: CALL DB with query string: "+refstring);
     //return database.ref(`expenses/${actions[0].expense.id}`).once('value');
     return database.ref(refstring).once('value');
+    done();
   })
   .then((snapshot) => {
     console.log("ADD EXPENSE: CHECK DB SNAPSHOT: "+JSON.stringify(snapshot.val()));
@@ -117,6 +118,7 @@ test('should fetch database data', (done) => {
       type: 'SET_EXPENSES',
       expenses: expensesCase1
     });
+    done();
   })
 });
 
