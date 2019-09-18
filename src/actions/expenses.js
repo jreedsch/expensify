@@ -9,7 +9,8 @@ export const addExpense = (expense) => ({
 
 // return function, not object
 export const startAddExpense = (expenseData = {}) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     const {
       description = "",
       note = "",
@@ -17,7 +18,7 @@ export const startAddExpense = (expenseData = {}) => {
       createdAt = 0
     } = expenseData;
     const expense = { description, note, amount, createdAt };
-    return database.ref('/expenses').push(expense) //return is for promise chaining in test
+    return database.ref(`/users/${uid}/expenses`).push(expense) //return is for promise chaining in test
     .then((ref) => {
       dispatch(addExpense({
         id: ref.key,
@@ -39,8 +40,9 @@ export const removeExpense = ( id ) => {
 // load local store with database data
 export const startRemoveExpense = ( {id} ) => {
   console.log("IN actions.startRemoveExpense id: "+id);
-  return (dispatch) => {
-    return database.ref(`/expenses/${id}`).remove()  //remove by internal id, not record key
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`/users/${uid}/expenses/${id}`).remove()  //remove by internal id, not record key
     .then(() => {//return is for promise chaining in test
       dispatch(removeExpense(id));
     });
@@ -65,8 +67,9 @@ export const editExpense = (id, updates) => {
 // load local store with database data
 export const startEditExpense = ( id, updates ) => {
   console.log("IN actions.startEditExpense id: "+id);
-  return (dispatch) => {
-    return database.ref(`/expenses/${id}`).update(updates)  //remove by internal id, not record key
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`/users/${uid}/expenses/${id}`).update(updates)  //remove by internal id, not record key
     .then(() => {//return is for promise chaining in test
       dispatch(editExpense(id, updates));
     });
@@ -82,8 +85,9 @@ export const setExpenses = (expenses) => ({
 // load local store with database data
 export const startSetExpenses = () => {
   console.log("IN actions.startSetExpenses");
-  return (dispatch) => {
-    return database.ref('/expenses').once('value').then((snapshot) => {//return is for promise chaining in test
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`/users/${uid}/expenses`).once('value').then((snapshot) => {//return is for promise chaining in test
       const expenseData = [];
       snapshot.forEach((childSnapshot) => {
         expenseData.push({
@@ -106,7 +110,7 @@ export const loadExpenses = (expenses) => ({
 export const startLoadExpenses = (expenseData = {}) => {
   console.log("IN actions.startLoadExpenses");
   return (dispatch) => {
-    return database.ref('/expenses').set(expenseData) //return is for promise chaining in test
+    return database.ref(`/users/${uid}/expenses`).set(expenseData) //return is for promise chaining in test
     .then((ref) => {
       dispatch(loadExpenses(expenseData));
     });

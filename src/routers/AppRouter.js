@@ -9,6 +9,7 @@ import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 import Header from '../components/Header';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 export const history = createHistory();
 
@@ -17,6 +18,38 @@ export const history = createHistory();
 
    // <Header />  removed, added to PrivateRoute
 const AppRouter = () => (
+ <Router history={history}>
+  <div>
+   <Switch>
+    <PublicRoute
+       path="/"
+       component={ LoginPage }
+       exact={true}
+    />
+    <PrivateRoute
+       path="/dashboard"
+       component={ ExpenseDashboardPage }
+       exact={true}
+    />
+    <PrivateRoute
+       path="/create"
+       component={ AddExpensePage }
+    />
+    <PrivateRoute path="/edit/:id" component={ EditExpensePage } />
+    <PublicRoute
+       path="/help"
+       component={ HelpPage }
+    />
+    <Route
+       component={ NotFoundPage }
+    />
+   </Switch>
+  </div>
+ </Router>
+);
+
+/*
+onst AppRouter = () => (
  <Router history={history}>
   <div>
    <Switch>
@@ -46,5 +79,5 @@ const AppRouter = () => (
   </div>
  </Router>
 );
-
+*/
 export default AppRouter;
