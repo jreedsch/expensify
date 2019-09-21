@@ -56,6 +56,8 @@ class ExpenseForm extends React.Component {
     this.setState(() => ({ calendarFocused: focused}));
   };
 
+
+
   onSubmitHandler = (e) => {
     console.log("SUBMIT, description="+this.state.description);
     e.preventDefault(); //no refresh
@@ -80,12 +82,12 @@ class ExpenseForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Expense Form </h2>
-        {this.state.err && <p>{this.state.err}</p> }
-        <form onSubmit={this.onSubmitHandler}>
+
+        <form className="form" onSubmit={this.onSubmitHandler}>
+          {this.state.err && <p className="form__error">{this.state.err}</p> }
           <input
             type='text'
+            className="text-input"
             placeholder='Description'
             autoFocus
             value={this.state.description}
@@ -94,6 +96,7 @@ class ExpenseForm extends React.Component {
           <input
             type='text'
             placeholder='Amount'
+            className="text-input"
             value={this.state.amount}
             onChange={this.onAmountChange}
           />
@@ -106,13 +109,16 @@ class ExpenseForm extends React.Component {
             isOutsideRange={() => false}
           />
           <textarea
+            className="textarea-input"
             placeholder='Note'
             value={this.state.note}
             onChange={this.onNoteChange}
           />
-          <button>Add Expense</button>
+          <div> { /*  removes from form children (_form.scss: > * { lecture #176 ), so not full width  */ }
+            <span><button type="submit" >Save Expense</button></span>
+            <span><button type="button" className='cancel_button' onClick={this.props.onCancel}>Cancel</button></span>
+          </div>
         </form>
-      </div>
     )
 
   }

@@ -35,36 +35,43 @@ export class ExpenseListFilters extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="content-container">
+        <div className="input-group">
 
-        filter by description:
-        <input
-          type='text'
-          value={this.props.filters.text}
-          onChange={this.onTextChange}
-        />
+          <div className="input-group__item">
+            <input
+              className="text-input"
+              placeholder="Search descriptions"
+              type='text'
+              value={this.props.filters.text}
+              onChange={this.onTextChange}
+            />
+          </div>
 
-        sort by:
-        <select
-          value={this.props.filters.sortBy}
-          onChange={this.onSortChange}
-        >
-  //???  >
-          <option value='date'>Date</option>
-          <option value='amount'>Amount</option>
-        </select>
+          <div className="input-group__item">
+            <select
+              className="text-input"
+              value={this.props.filters.sortBy}
+              onChange={this.onSortChange}
+            >
+              <option value='date'>Date</option>
+              <option value='amount'>Amount</option>
+            </select>
+          </div>
 
-        show date range:
-        <DateRangePicker
-          startDate={this.props.filters.startDate}
-          endDate={this.props.filters.endDate}
-          onDatesChange={this.onDatesChange}
-          focusedInput={this.state.calendarFocused}
-          onFocusChange={this.onFocusChange}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-          showClearDates={true}
-        />
+          <div className="input-group__item">
+            <DateRangePicker
+              startDate={this.props.filters.startDate}
+              endDate={this.props.filters.endDate}
+              onDatesChange={this.onDatesChange}
+              focusedInput={this.state.calendarFocused}
+              onFocusChange={this.onFocusChange}
+              numberOfMonths={1}
+              isOutsideRange={() => false}
+              showClearDates={true}
+            />
+          </div>
+        </div>
       </div>
     ); // end return
   }; //end render

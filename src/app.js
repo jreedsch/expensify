@@ -10,6 +10,7 @@ import 'react-dates/lib/css/_datepicker.css';
 
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
+import LoadingPage from './components/LoadingPage';
 //import { getVisibleExpenses } from './selectors/expenses';
 //import { setTextFilter, sortByAmount, sortByDate, setStartDate, setEndDate } from  './actions/filters';
 import { startSetExpenses, startLoadExpenses } from './actions/expenses';
@@ -50,7 +51,7 @@ const jsx = (
   </Provider>
 );
 
-//ReactDOM.render('startup: loading database data', document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 //+ subsequent runs, DB loaded already
 //+ myStore.dispatch(startSetExpenses()).then(() => {
 //- first load of fixture data to DB
@@ -62,6 +63,7 @@ const jsx = (
 
 
 // initial redirects at app start time
+ 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     console.log("IN app.js, user logged on: "+JSON.stringify(user));

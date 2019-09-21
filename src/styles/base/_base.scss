@@ -1,4 +1,7 @@
 
+* {
+  box-sizing: border-box;  
+}
 
 html {
   font-size: 62.5%; //makes 1rem = 10px
@@ -6,13 +9,20 @@ html {
 
 body {
   font-family: Helvetica, Arial, sans-serif;
-  color: $brand-color;
+  color: $dark-gray;
   font-size: $std-size;
-  background: $dark-blue;
+  background: white;
+  line-height: 1;
 }
 
 button {
   cursor: pointer;
+  background-color: $light-blue;
+  color: white;
+  padding: $std-size;
+  font-weight: 300;
+  font-size: $std-size;
+  border-radius: 5px;
 }
 
 button:disabled {
@@ -20,7 +30,21 @@ button:disabled {
 }
 
 h1 {
-  font-size: $lrg-size;
+  font-size: $med-size;
+}
+
+.myLinkButton {
+  cursor: pointer;
+  background-color: $light-blue;
+  color: white;
+  padding: $std-size;
+  font-weight: 300;
+  font-size: $std-size;
+  border-radius: 5px;
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1;
+
 }
 
 .is-active {

@@ -10,12 +10,27 @@ export class AddExpensePage extends React.Component {
     this.props.history.push('/');
   };
 
+  onCancelButtonClick = (event) => {
+    this.props.history.push('/');
+  };
+
   render() {
     return (
-        <div>
-          <h3>add a new expense page</h3>
-          <ExpenseForm onSubmit={this.onSubmit}/>
+      <div>
+        <div className='page-header'>
+          <div className='content-container'>
+            <h1 className='page-header__title'>Add Expense</h1>
+          </div>
         </div>
+
+        <div className="content-container">
+          <ExpenseForm
+            onSubmit={this.onSubmit}
+            onCancel={this.onCancelButtonClick}
+          />
+        </div>
+
+      </div>
     );
   }
 }

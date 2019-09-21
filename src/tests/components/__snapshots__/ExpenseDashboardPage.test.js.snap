@@ -2,11 +2,18 @@
 
 exports[`should render ExpenseDashboardPage correctly 1`] = `
 <div>
-  <p>
-    expense dashboard page 
-  </p>
   <Connect(ExpenseSummary) />
   <Connect(ExpenseListFilters) />
   <Connect(ExpenseListPage) />
+  <p
+    style={
+      Object {
+        "float": "right",
+        "fontSize": "10px",
+      }
+    }
+  >
+    src/components/ExpenseDashboardPage.js
+  </p>
 </div>
 `;

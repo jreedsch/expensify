@@ -3,6 +3,15 @@
 // imports need no _ prefix or file type suffix
 @import './base/settings';
 @import './base/base';
+@import './components/box-layout';
+@import './components/content-container';
+@import './components/header';
+@import './components/page-header';
+@import './components/filters';
+@import './components/inputs';
+@import './components/form';
+@import './components/list';
+@import './components/responsive';
 
 /*
 @import './components/container';

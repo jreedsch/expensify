@@ -8,7 +8,7 @@ import moment from 'moment';
 //const ExpenseListItemPage = ({dispatch, description, amount, createdAt, id}) => { //destructured, from caller's spread operator
 const ExpenseListItemPage = ({description, amount, createdAt, id}) => { //destructured, from caller's spread operator
 //export const ExpenseListItemPage = ({description, amount, createdAt, id}) => { //destructured, from caller's spread operator
-  const createdAtMoment = moment(createdAt).format("MMM Do YYYY");
+  const createdAtMoment = moment(createdAt).format("MMM Do, YYYY");
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
@@ -18,15 +18,17 @@ const ExpenseListItemPage = ({description, amount, createdAt, id}) => { //destru
   // or use numeral.js
 
   return (
-    <div>
-      <p><Link to={`/edit/${id}`}>{description}</Link></p>
-      <p>
-         ID: {id},
-         Amount: {moneyAmount},
-         Created date: {createdAtMoment}
-      </p>
 
-    </div>
+      <Link className='list-item' to={`/edit/${id}`}>
+          <h3 className='list-item__title'>{description}</h3>
+          <span className='list-item__subtitle'>{createdAtMoment}</span>
+          <span className='list-item__id'>{id}</span>
+          <h3 className='list-item__data'>
+            {moneyAmount}
+          </h3>
+
+      </Link>
+
   );
 };
 

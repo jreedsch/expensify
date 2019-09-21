@@ -20,20 +20,33 @@ export class EditExpensePage extends React.Component {
     this.props.history.push('/');
   };
 
+  onCancelButtonClick = (event) => {
+    this.props.history.push('/');
+  };
 //        <p> edit expense page for id {this.props.match.params.id}</p>
   render() {
     return (
       <div>
-        <ExpenseForm
-          expense={this.props.expense}
-          onSubmit={this.onSubmitEdit}
-        />
-        <button onClick={ this.onRemoveButtonClick } >Remove!</button>
+        <div className='page-header'>
+          <div className='content-container'>
+            <h1 className='page-header__title'>Edit Expense</h1>
+          </div>
+        </div>
+        <div className="content-container">
+          <ExpenseForm
+            expense={this.props.expense}
+            onSubmit={this.onSubmitEdit}
+            onCancel={this.onCancelButtonClick}
+          />
+
+          <button className='remove_button' onClick={ this.onRemoveButtonClick } >Remove this expense!</button>
+
+        </div>
       </div>
     )
   };
 }
-
+//className='remove_button'
 const mapDispatchToProps = (dispatch, props) => ({
   removeExpense: (data) => dispatch(startRemoveExpense(data)), //dispatch(removeExpense(data)),
   editExpense: (id, expense) => dispatch(startEditExpense(id, expense))
