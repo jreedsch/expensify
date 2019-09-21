@@ -1,0 +1,27 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  > * {
+    margin-bottom: $sm-size;
+  }
+}
+
+.form__error {
+  margin: 0 0 $sm-size 0;
+  font-style: italic;
+  color: red;
+}
+
+.cancel_button {
+  background-color: #AA4444;
+  margin-left: $sm-size;  
+}
+
+.remove_button {
+    @extend button;
+    z-index: 100;
+    position: relative;
+    margin-top: -6.5rem;
+    float: right;
+    background-color: $purple;
+}

@@ -1,0 +1,25 @@
+.page-header {
+  background: $light-gray;
+  margin-bottom: $sm-size;
+  padding: $sm-size 0;
+}
+
+.page-header__title {
+  font-weight: 300;
+  color: black;
+  text-decoration: none;
+  span {
+    font-weight: 700;
+  }
+}
+
+.page-header__actions {
+  margin-top: $med-size;
+}
+
+.page-header__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $sm-size 0;
+}
